@@ -33,12 +33,14 @@
     <None Remove="ClientApp\src\app\services\dep.service.ts" />
     <None Remove="ClientApp\src\app\services\posts.service.ts" />
     <None Remove="ClientApp\src\app\services\types.service.ts" />
+    <None Remove="ClientApp\src\app\services\users.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\services\dep.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\posts.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\types.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\users.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

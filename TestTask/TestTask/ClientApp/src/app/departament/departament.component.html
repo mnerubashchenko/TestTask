@@ -7,11 +7,11 @@
 
   <dxo-filter-row [visible]="true"></dxo-filter-row>
 
-  <dxi-column dataField="fullNameDep"></dxi-column>
+  <dxi-column dataField="fullNameDep" caption="Полное название"></dxi-column>
 
-  <dxi-column dataField="shortNameDep"></dxi-column>
+  <dxi-column dataField="shortNameDep" caption="Сокращенное название"></dxi-column>
 
-  <dxi-column dataField="typeId">
+  <dxi-column dataField="typeId" caption="Тип отдела">
     <dxo-lookup [dataSource]="types"
                 displayExpr="nameType"
                 valueExpr="idType">

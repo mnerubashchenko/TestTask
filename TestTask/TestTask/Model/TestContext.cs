@@ -34,7 +34,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Departaments>(entity =>
             {
                 entity.HasKey(e => e.IdDep)
-                    .HasName("PK__Departam__0E65B7A64EEC1011");
+                    .HasName("PK__Departam__0E65B7A6E0E626BF");
 
                 entity.Property(e => e.IdDep).HasDefaultValueSql("(newsequentialid())");
 
@@ -49,13 +49,14 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Departaments)
                     .HasForeignKey(d => d.TypeId)
-                    .HasConstraintName("FK__Departame__TypeI__45F365D3");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Departame__TypeI__3D5E1FD2");
             });
 
             modelBuilder.Entity<Posts>(entity =>
             {
                 entity.HasKey(e => e.IdPost)
-                    .HasName("PK__Posts__F8DCBD4DA818A572");
+                    .HasName("PK__Posts__F8DCBD4D886F8E9B");
 
                 entity.Property(e => e.IdPost).HasDefaultValueSql("(newsequentialid())");
 
@@ -67,7 +68,7 @@ namespace TestTask.Model
             modelBuilder.Entity<TypesOfDep>(entity =>
             {
                 entity.HasKey(e => e.IdType)
-                    .HasName("PK__TypesOfD__9A39EABCA37169A5");
+                    .HasName("PK__TypesOfD__9A39EABC90E7B5EC");
 
                 entity.Property(e => e.IdType).HasDefaultValueSql("(newsequentialid())");
 
@@ -79,7 +80,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
-                    .HasName("PK__Users__B7C926384B9CB3F6");
+                    .HasName("PK__Users__B7C9263836B7A52E");
 
                 entity.Property(e => e.IdUser).HasDefaultValueSql("(newsequentialid())");
 
@@ -104,13 +105,13 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Dep)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.DepId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__DepId__4AB81AF0");
+                    .HasConstraintName("FK__Users__DepId__4222D4EF");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.PostId)
-                    .HasConstraintName("FK__Users__PostId__49C3F6B7");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Users__PostId__412EB0B6");
             });
 
             OnModelCreatingPartial(modelBuilder);

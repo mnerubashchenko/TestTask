@@ -16,3 +16,10 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+li.link-active a,
+li.link-active a:hover,
+li.link-active a:focus {
+
+  border-bottom: 2px solid black;
+}

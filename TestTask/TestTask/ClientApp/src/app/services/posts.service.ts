@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 

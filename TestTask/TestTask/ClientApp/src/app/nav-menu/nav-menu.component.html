@@ -35,6 +35,11 @@
               [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/posts']">Должности</a>
           </li>
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/users']">Пользователи</a>
+          </li>
         </ul>
       </div>
     </div>

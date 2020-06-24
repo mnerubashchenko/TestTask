@@ -1,0 +1,46 @@
+<dx-data-grid id="gridContainer"
+              [dataSource]="store"
+              [showBorders]="true"
+              keyExpr="idUser"
+              (onRowUpdating)="onRowUpdating($event)"
+              [hoverStateEnabled]="true">
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column dataField="nameUser" caption="Имя"></dxi-column>
+
+  <dxi-column dataField="surnameUser" caption="Фамилия"></dxi-column>
+
+  <dxi-column dataField="lastnameUser" caption="Отчество"></dxi-column>
+
+  <dxi-column dataField="postId" caption="Должность">
+    <dxo-lookup [dataSource]="posts"
+                displayExpr="namePost"
+                valueExpr="idPost">
+    </dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="depId" caption="Отдел">
+    <dxo-lookup [dataSource]="deps"
+                displayExpr="shortNameDep"
+                valueExpr="idDep">
+    </dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="telUser" caption="Контактный телефон"></dxi-column>
+
+  <dxi-column dataField="nationalityUser" caption="Гражданство"></dxi-column>
+
+  <dxo-editing mode="popup"
+               [allowUpdating]="true"
+               [allowDeleting]="true"
+               [allowAdding]="true">
+    <dxo-popup title="Отделы"
+               [showTitle]="true"
+               [width]="700"
+               [height]="300"
+               [position]="{ my: 'top', at: 'top', of: window }">
+    </dxo-popup>
+  </dxo-editing>
+
+</dx-data-grid>
