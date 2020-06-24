@@ -10,6 +10,7 @@ import { DepService } from './services/dep.service';
 import { TypesService } from './services/types.service';
 import { DxDataGridModule } from 'devextreme-angular';
 import { locale, loadMessages } from 'devextreme/localization';
+import { TypesComponent } from './types/types.component';
 
 declare var require: any;
 let messagesDe = require("devextreme/localization/messages/de.json"),
@@ -27,7 +28,8 @@ locale(navigator.language);
   declarations: [
     AppComponent,
     NavMenuComponent,
-    DepartamentComponent
+    DepartamentComponent,
+    TypesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,7 +37,8 @@ locale(navigator.language);
     FormsModule,
     DxDataGridModule,
     RouterModule.forRoot([
-      { path: '', component: DepartamentComponent, pathMatch: 'full' }
+      { path: '', component: DepartamentComponent, pathMatch: 'full' },
+      { path: 'types', component: TypesComponent },
     ])
   ],
   providers: [DepService,
