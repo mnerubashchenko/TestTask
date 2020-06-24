@@ -1,5 +1,5 @@
 <dx-data-grid id="gridContainer"
-              [dataSource]="deps"
+              [dataSource]="store"
               [showBorders]="true"
               keyExpr="idDep"
               (onRowUpdating)="onRowUpdating($event)"
@@ -17,5 +17,17 @@
                 valueExpr="idType">
     </dxo-lookup>
   </dxi-column>
+
+  <dxo-editing mode="popup"
+               [allowUpdating]="true"
+               [allowDeleting]="true"
+               [allowAdding]="true">
+    <dxo-popup title="Отделы"
+               [showTitle]="true"
+               [width]="700"
+               [height]="300"
+               [position]="{ my: 'top', at: 'top', of: window }">
+    </dxo-popup>
+  </dxo-editing>
 
 </dx-data-grid>

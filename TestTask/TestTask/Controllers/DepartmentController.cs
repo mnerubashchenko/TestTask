@@ -20,5 +20,38 @@ namespace TestTask.Controllers
                 return db.Departaments.ToList();
             }
         }
+
+        [HttpPost]
+        [Route("AddDepartament")]
+        public void AddDepartament(Departaments newDepartament)
+        {
+            using (var db = new TestContext())
+            {
+                db.Departaments.Add(newDepartament);
+                db.SaveChanges();
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateDepartament")]
+        public void UpdateDepartament(Departaments updatedDepartament)
+        {
+            using (var db = new TestContext())
+            {
+                db.Departaments.Update(updatedDepartament);
+                db.SaveChanges();
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteDepartament")]
+        public void DeleteDepartament(Guid idDep)
+        {
+            using (var db = new TestContext())
+            {
+                db.Departaments.Remove(db.Departaments.Find(idDep));
+                db.SaveChanges();
+            }
+        }
     }
 }
