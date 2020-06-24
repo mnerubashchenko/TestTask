@@ -1,0 +1,24 @@
+<dx-data-grid id="gridContainer"
+              [dataSource]="store"
+              [showBorders]="true"
+              keyExpr="idPost"
+              (onRowUpdating)="onRowUpdating($event)"
+              [hoverStateEnabled]="true">
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column dataField="namePost"></dxi-column>
+
+  <dxo-editing mode="popup"
+               [allowUpdating]="true"
+               [allowDeleting]="true"
+               [allowAdding]="true">
+    <dxo-popup title="Должности"
+               [showTitle]="true"
+               [width]="700"
+               [height]="300"
+               [position]="{ my: 'top', at: 'top', of: window }">
+    </dxo-popup>
+  </dxo-editing>
+
+</dx-data-grid>
