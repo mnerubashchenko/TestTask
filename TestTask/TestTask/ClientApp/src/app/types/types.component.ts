@@ -19,11 +19,12 @@ export class TypesComponent {
   constructor(private typesService: TypesService, public http: HttpClient,
     @Inject('BASE_URL') public baseUrl: string) {
 
+    this.asyncValidation = this.asyncValidation.bind(this);
+
     this.typesService.subject.subscribe(this.typesReceived);
     this.typesService.getTypes();
 
     this.headers = new HttpHeaders().set('content-type', 'application/json');
-
     this.store = new CustomStore({
       key: "idType",
       load: () => this.types,
@@ -34,7 +35,14 @@ export class TypesComponent {
           () => { this.typesService.getTypes(); }),
       remove: (key) => this.http.delete<any>(this.baseUrl + 'api/type/DeleteType', { params: new HttpParams().set('idType', key) }).subscribe(() => { this.typesService.getTypes(); })
     });
+  }
 
+  asyncValidation(params) {
+    let cleanTypesValidate = this.types.filter(item => item.idType != params.data.idType);
+    let check = (cleanTypesValidate.find(item => item.nameType == params.value) != null) ? false : true;
+    return new Promise((resolve) => {
+      resolve(check === true);
+    });
   }
 
   typesReceived = (data: IType[]) => {

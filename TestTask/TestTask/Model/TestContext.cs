@@ -15,6 +15,7 @@ namespace TestTask.Model
         {
         }
 
+        public virtual DbSet<Countries> Countries { get; set; }
         public virtual DbSet<Departaments> Departaments { get; set; }
         public virtual DbSet<Posts> Posts { get; set; }
         public virtual DbSet<TypesOfDep> TypesOfDep { get; set; }
@@ -31,10 +32,22 @@ namespace TestTask.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Countries>(entity =>
+            {
+                entity.HasKey(e => e.IdCountry)
+                    .HasName("PK__Countrie__F99F104D50008097");
+
+                entity.Property(e => e.IdCountry).ValueGeneratedNever();
+
+                entity.Property(e => e.CountryName)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Departaments>(entity =>
             {
                 entity.HasKey(e => e.IdDep)
-                    .HasName("PK__Departam__0E65B7A6E0E626BF");
+                    .HasName("PK__Departam__0E65B7A62FBF9639");
 
                 entity.Property(e => e.IdDep).HasDefaultValueSql("(newsequentialid())");
 
@@ -49,14 +62,13 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Departaments)
                     .HasForeignKey(d => d.TypeId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Departame__TypeI__3D5E1FD2");
+                    .HasConstraintName("FK__Departame__TypeI__3F466844");
             });
 
             modelBuilder.Entity<Posts>(entity =>
             {
                 entity.HasKey(e => e.IdPost)
-                    .HasName("PK__Posts__F8DCBD4D886F8E9B");
+                    .HasName("PK__Posts__F8DCBD4D34FF6FF5");
 
                 entity.Property(e => e.IdPost).HasDefaultValueSql("(newsequentialid())");
 
@@ -68,7 +80,7 @@ namespace TestTask.Model
             modelBuilder.Entity<TypesOfDep>(entity =>
             {
                 entity.HasKey(e => e.IdType)
-                    .HasName("PK__TypesOfD__9A39EABC90E7B5EC");
+                    .HasName("PK__TypesOfD__9A39EABC70859358");
 
                 entity.Property(e => e.IdType).HasDefaultValueSql("(newsequentialid())");
 
@@ -80,7 +92,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
-                    .HasName("PK__Users__B7C9263836B7A52E");
+                    .HasName("PK__Users__B7C92638E559123F");
 
                 entity.Property(e => e.IdUser).HasDefaultValueSql("(newsequentialid())");
 
@@ -92,26 +104,29 @@ namespace TestTask.Model
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NationalityUser)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.SurnameUser)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TelUser).HasColumnType("numeric(18, 0)");
+                entity.Property(e => e.TelUser)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Dep)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.DepId)
-                    .HasConstraintName("FK__Users__DepId__4222D4EF");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Users__DepId__440B1D61");
+
+                entity.HasOne(d => d.NationalityUserNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.NationalityUser)
+                    .HasConstraintName("FK__Users__Nationali__44FF419A");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.PostId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK__Users__PostId__412EB0B6");
+                    .HasConstraintName("FK__Users__PostId__4316F928");
             });
 
             OnModelCreatingPartial(modelBuilder);

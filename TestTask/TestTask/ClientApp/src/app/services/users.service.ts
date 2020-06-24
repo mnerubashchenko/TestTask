@@ -3,14 +3,19 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 export interface IUser {
-  IdUser: string;
-  NameUser: string;
-  SurnameUser: string;
-  LastnameUser: string;
-  PostId: string;
-  DepId: string;
-  TelUser: string;
-  NationalityUser: string;
+  idUser: string;
+  nameUser: string;
+  surnameUser: string;
+  lastnameUser: string;
+  postId: string;
+  depId: string;
+  telUser: string;
+  nationalityUser: string;
+}
+
+export interface ICountry {
+  idCountry: string;
+  countryName: string;
 }
 
 export class UsersService {

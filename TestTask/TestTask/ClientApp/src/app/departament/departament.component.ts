@@ -23,6 +23,10 @@ export class DepartamentComponent {
 
     sessionStorage.setItem("locale", 'ru');
 
+    this.asyncValidationFullName = this.asyncValidationFullName.bind(this);
+
+    this.asyncValidationShortName = this.asyncValidationShortName.bind(this);
+
     this.depService.subject.subscribe(this.depsReceived);
     this.depService.getDeps();
 
@@ -51,6 +55,22 @@ export class DepartamentComponent {
   typesReceived = (data: IType[]) => {
     this.types = data;
     this.dataGrid.instance.refresh();
+  }
+
+  asyncValidationFullName(params) {
+    let cleanDepsValidate = this.deps.filter(item => item.idDep != params.data.idDep);
+    let check = (cleanDepsValidate.find(item => item.fullNameDep == params.value) != null) ? false : true;
+    return new Promise((resolve) => {
+      resolve(check === true);
+    });
+  }
+
+  asyncValidationShortName(params) {
+    let cleanDepsValidate = this.deps.filter(item => item.idDep != params.data.idDep);
+    let check = (cleanDepsValidate.find(item => item.shortNameDep == params.value) != null) ? false : true;
+    return new Promise((resolve) => {
+      resolve(check === true);
+    });
   }
 
   onRowUpdating(e) {

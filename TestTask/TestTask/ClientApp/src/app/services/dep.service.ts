@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 export interface IDepartment {
-  IdDep: string;
-  FullNameDep: string;
-  ShortNameDep: string;
-  TypeId: string;
+  idDep: string;
+  fullNameDep: string;
+  shortNameDep: string;
+  typeId: string;
 }
 
 export class DepService {

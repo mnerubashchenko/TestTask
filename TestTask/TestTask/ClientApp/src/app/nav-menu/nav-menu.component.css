@@ -6,10 +6,13 @@ a.navbar-brand {
 
 html {
   font-size: 14px;
+  font-family: 'SFNS Display';
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    font-family: 'SFNS Display';
   }
 }
 
@@ -17,9 +20,13 @@ html {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
+li a:hover {
+  border-bottom: 2px solid #ccc;
+}
 
+li.link-active a,
+li.link-active a:focus {
   border-bottom: 2px solid black;
+  font-weight: bold;
+  cursor: default;
 }

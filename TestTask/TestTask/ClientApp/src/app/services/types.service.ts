@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 export interface IType {
-  IdType: string;
-  NameType: string;
+  idType: string;
+  nameType: string;
 }
 
 export class TypesService {

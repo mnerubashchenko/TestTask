@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 export interface IPost {
-  IdPost: string;
-  NamePost: string;
+  idPost: string;
+  namePost: string;
 }
 
 export class PostsService {

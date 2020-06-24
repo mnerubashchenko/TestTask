@@ -7,7 +7,13 @@
 
   <dxo-filter-row [visible]="true"></dxo-filter-row>
 
-  <dxi-column dataField="namePost" caption="Должность"></dxi-column>
+  <dxi-column dataField="namePost" caption="Должность">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxi-validation-rule type="async"
+                         message="Данная должность существует"
+                         [validationCallback]="asyncValidation">
+    </dxi-validation-rule>
+  </dxi-column>
 
   <dxo-editing mode="popup"
                [allowUpdating]="true"

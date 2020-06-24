@@ -19,6 +19,8 @@ export class PostsComponent {
   constructor(private postsService: PostsService, public http: HttpClient,
     @Inject('BASE_URL') public baseUrl: string) {
 
+    this.asyncValidation = this.asyncValidation.bind(this);
+
     this.postsService.subject.subscribe(this.postsReceived);
     this.postsService.getPosts();
 
@@ -34,12 +36,19 @@ export class PostsComponent {
           () => { this.postsService.getPosts(); }),
       remove: (key) => this.http.delete<any>(this.baseUrl + 'api/post/DeletePost', { params: new HttpParams().set('idPost', key) }).subscribe(() => { this.postsService.getPosts(); })
     });
-
   }
 
   postsReceived = (data: IPost[]) => {
     this.posts = data;
     this.dataGrid.instance.refresh();
+  }
+
+  asyncValidation(params) {
+    let cleanPostsValidate = this.posts.filter(item => item.idPost != params.data.idPost);
+    let check = (cleanPostsValidate.find(item => item.namePost == params.value) != null) ? false : true;
+    return new Promise((resolve) => {
+      resolve(check === true);
+    });
   }
 
   onRowUpdating(e) {
