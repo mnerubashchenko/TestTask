@@ -1,0 +1,21 @@
+<dx-data-grid id="gridContainer"
+              [dataSource]="deps"
+              [showBorders]="true"
+              keyExpr="idDep"
+              (onRowUpdating)="onRowUpdating($event)"
+              [hoverStateEnabled]="true">
+
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column dataField="fullNameDep"></dxi-column>
+
+  <dxi-column dataField="shortNameDep"></dxi-column>
+
+  <dxi-column dataField="typeId">
+    <dxo-lookup [dataSource]="types"
+                displayExpr="nameType"
+                valueExpr="idType">
+    </dxo-lookup>
+  </dxi-column>
+
+</dx-data-grid>
