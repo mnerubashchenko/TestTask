@@ -35,7 +35,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Countries>(entity =>
             {
                 entity.HasKey(e => e.IdCountry)
-                    .HasName("PK__Countrie__F99F104D50008097");
+                    .HasName("PK__Countrie__F99F104D9952D8D4");
 
                 entity.Property(e => e.IdCountry).ValueGeneratedNever();
 
@@ -47,7 +47,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Departaments>(entity =>
             {
                 entity.HasKey(e => e.IdDep)
-                    .HasName("PK__Departam__0E65B7A62FBF9639");
+                    .HasName("PK__Departam__0E65B7A68B413351");
 
                 entity.Property(e => e.IdDep).HasDefaultValueSql("(newsequentialid())");
 
@@ -62,13 +62,14 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.Departaments)
                     .HasForeignKey(d => d.TypeId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Departame__TypeI__3F466844");
             });
 
             modelBuilder.Entity<Posts>(entity =>
             {
                 entity.HasKey(e => e.IdPost)
-                    .HasName("PK__Posts__F8DCBD4D34FF6FF5");
+                    .HasName("PK__Posts__F8DCBD4D3B791035");
 
                 entity.Property(e => e.IdPost).HasDefaultValueSql("(newsequentialid())");
 
@@ -80,7 +81,7 @@ namespace TestTask.Model
             modelBuilder.Entity<TypesOfDep>(entity =>
             {
                 entity.HasKey(e => e.IdType)
-                    .HasName("PK__TypesOfD__9A39EABC70859358");
+                    .HasName("PK__TypesOfD__9A39EABCB4DF491A");
 
                 entity.Property(e => e.IdType).HasDefaultValueSql("(newsequentialid())");
 
@@ -92,7 +93,7 @@ namespace TestTask.Model
             modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.IdUser)
-                    .HasName("PK__Users__B7C92638E559123F");
+                    .HasName("PK__Users__B7C92638B5D01628");
 
                 entity.Property(e => e.IdUser).HasDefaultValueSql("(newsequentialid())");
 
@@ -115,7 +116,6 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Dep)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.DepId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Users__DepId__440B1D61");
 
                 entity.HasOne(d => d.NationalityUserNavigation)
@@ -126,6 +126,7 @@ namespace TestTask.Model
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.PostId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__Users__PostId__4316F928");
             });
 

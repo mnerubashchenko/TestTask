@@ -19,6 +19,7 @@ export class UsersComponent {
   public countries: ICountry[];
   store: any;
   headers: HttpHeaders;
+  fioPattern: any = /^[А-Яа-я]+$/;
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
 
   constructor(private depService: DepService, private postsService: PostsService, private usersService: UsersService,

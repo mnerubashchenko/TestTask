@@ -9,14 +9,17 @@
 
   <dxi-column dataField="nameUser" caption="Имя">
     <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxi-validation-rule type="pattern" [pattern]="fioPattern" message="Имя может содержать только буквы русского алфавита"></dxi-validation-rule>
   </dxi-column>
 
   <dxi-column dataField="surnameUser" caption="Фамилия">
     <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxi-validation-rule type="pattern" [pattern]="fioPattern" message="Фамилия может содержать только буквы русского алфавита"></dxi-validation-rule>
   </dxi-column>
 
   <dxi-column dataField="lastnameUser" caption="Отчество">
     <dxi-validation-rule type="required"></dxi-validation-rule>
+    <dxi-validation-rule type="pattern" [pattern]="fioPattern" message="Отчество может содержать только буквы русского алфавита"></dxi-validation-rule>
   </dxi-column>
 
   <dxi-column dataField="postId" caption="Должность">
@@ -59,7 +62,7 @@
                [allowAdding]="true">
     <dxo-popup title="Отделы"
                [showTitle]="true"
-               [width]="700"
+               [width]="850"
                [height]="400"
                [position]="{ my: 'top', at: 'top', of: window }">
     </dxo-popup>
