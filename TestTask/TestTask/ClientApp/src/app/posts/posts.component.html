@@ -13,6 +13,8 @@
                          message="Данная должность существует"
                          [validationCallback]="asyncValidation">
     </dxi-validation-rule>
+    <dxi-validation-rule type="stringLength" [max]="50" message="Превышено максимальное количество допустимых символов">
+    </dxi-validation-rule>
   </dxi-column>
 
   <dxo-editing mode="popup"

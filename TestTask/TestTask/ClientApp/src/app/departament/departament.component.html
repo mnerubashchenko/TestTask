@@ -13,6 +13,8 @@
                          message="Отдел с таким названием существует"
                          [validationCallback]="asyncValidationFullName">
     </dxi-validation-rule>
+    <dxi-validation-rule type="stringLength" [max]="100" message="Превышено максимальное количество допустимых символов">
+    </dxi-validation-rule>
   </dxi-column>
 
   <dxi-column dataField="shortNameDep" caption="Сокращенное название">
@@ -20,6 +22,8 @@
     <dxi-validation-rule type="async"
                          message="Отдел с таким названием существует"
                          [validationCallback]="asyncValidationShortName">
+    </dxi-validation-rule>
+    <dxi-validation-rule type="stringLength" [max]="15" message="Превышено максимальное количество допустимых символов">
     </dxi-validation-rule>
   </dxi-column>
 
